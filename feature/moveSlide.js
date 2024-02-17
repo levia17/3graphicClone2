@@ -48,12 +48,12 @@ function moveSlide() {
 function slideCenter(distance) {
   arrayIntro.forEach((intro, i) => {
     intro.style.transform = `translateX(${-distance}px)`;
-    console.log(intro.offsetLeft);
+    // console.log(intro.offsetLeft);
   });
 }
 
 function checker(intro) {
-  if (intro.offsetLeft <= window.innerWidth / 3 && intro.offsetLeft > 0) {
+  if (intro.offsetLeft <= window.innerWidth /2 && intro.offsetLeft > 0) {
     console.log('Catched!');
     distance = intro.offsetLeft;
     slideCenter(distance);

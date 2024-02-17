@@ -23,6 +23,10 @@ body .container .navbar {
   align-items: center;
   z-index: 2;
 }
+body .container .navbar .logo {
+  width: 10%;
+  height: auto;
+}
 body .container .navbar .burger {
   position: relative;
   width: 40px;

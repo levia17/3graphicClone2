@@ -23,6 +23,7 @@ const arrayIntro = [
 let indexIntro = 0;
 let isDragging, beginPoint, endPoint, distance;
 
+// Slide's event (mouse)
 function moveSlide() {
   container_intro.addEventListener("mousedown", (e) => {
     isDragging = true;
@@ -30,9 +31,6 @@ function moveSlide() {
   });
   container_intro.addEventListener("mouseup", () => {
     isDragging = false;
-    arrayIntro.forEach((intro) => {
-      checker(intro);
-    });
   });
   container_intro.addEventListener("mousemove", (e) => {
     if (isDragging) {
@@ -45,19 +43,44 @@ function moveSlide() {
   });
 }
 
+// Display one slide to center
 function slideCenter(distance) {
-  arrayIntro.forEach((intro, i) => {
+  arrayIntro.forEach((intro) => {
     intro.style.transform = `translateX(${-distance}px)`;
     // console.log(intro.offsetLeft);
   });
 }
 
-function checker(intro) {
-  if (intro.offsetLeft <= window.innerWidth /2 && intro.offsetLeft > 0) {
-    console.log('Catched!');
+// Check X cordinate of slide
+function checker() {
+  arrayIntro.forEach((intro) => {
+  if (intro.offsetLeft <= window.innerWidth / 2 && intro.offsetLeft > 0) {
+    console.log("Catched!");
     distance = intro.offsetLeft;
     slideCenter(distance);
   }
+  });
+
+  requestAnimationFrame(checker);
 }
 
+checker();
+
+
+// Slide's event (button)
+function nextSlide(count) {
+  arrayIntro.forEach((intro) => {
+    intro.style.transform = `translateX(-${count * 100}%)`;
+    console.log(arrayIntro[0].offsetLeft);
+  });
+}
+
+function prevSlide(count) {
+  arrayIntro.forEach((intro) => {
+    intro.style.transform = `translateX(${count * 100}%)`;
+    console.log(arrayIntro[0].offsetLeft);
+  });
+}
+
+export { nextSlide, prevSlide };
 export default moveSlide;
